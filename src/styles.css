@@ -19,7 +19,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -40,9 +40,9 @@ p { margin: 0; }
 
 .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 
-.lede { color: var(--muted); font-size: clamp(1.05rem, 2.2vw, 1.2rem); line-height: 1.6; max-width: 46ch; margin: 16px auto 0; text-align: center; }
+.lede { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.2rem); line-height: 1.6; max-width: 46ch; margin: 16px auto 0; text-align: center; }
 
-.section { padding: 64px 0; }
+.section { padding: 52px 0; }
 .section--tint { background: var(--bg-tint); }
 .section--calc { padding-top: 8px; }
 
@@ -56,7 +56,7 @@ p { margin: 0; }
 .btn--teal { background: var(--teal); color: #fff; }
 .btn--teal:hover { background: var(--teal-dark); }
 .btn--teal:active { transform: translateY(1px); }
-.btn--sm { min-height: 40px; padding: 10px 18px; font-size: .95rem; }
+.btn--sm { min-height: 38px; padding: 9px 14px; font-size: .9rem; white-space: nowrap; }
 .btn:focus-visible, .calc__range:focus-visible, .video__poster:focus-visible {
   outline: 3px solid var(--teal-bright); outline-offset: 3px;
 }
@@ -68,27 +68,27 @@ p { margin: 0; }
   backdrop-filter: saturate(1.4) blur(8px);
   border-bottom: 1px solid var(--line);
 }
-.header__inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { display: block; height: 28px; width: auto; user-select: none; -webkit-user-drag: none; }
+.header__inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+.logo { display: block; height: 24px; width: auto; user-select: none; -webkit-user-drag: none; }
 
 /* Hero */
-.hero { padding: 56px 0 32px; text-align: center; }
+.hero { padding: 28px 0 24px; text-align: center; }
 .hero h1 { max-width: 22ch; margin: 0 auto; }
 
 .brand-strip {
-  list-style: none; padding: 0; margin: 0 auto 32px;
-  display: flex; justify-content: center; flex-wrap: wrap; gap: 6px;
+  list-style: none; padding: 0; margin: 0 auto 24px;
+  display: grid; grid-template-columns: repeat(7, minmax(0, 44px)); justify-content: center; gap: 6px;
 }
 .brand-strip__item {
   position: relative;
-  display: grid; place-items: center; width: 42px; height: 42px;
+  display: grid; place-items: center; aspect-ratio: 1;
   background: #fff; border: 1px solid var(--line); border-radius: 12px;
   box-shadow: 0 2px 6px rgba(22, 18, 43, .05);
 }
 .brand-strip__item span {
   position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
-.brand-icon { width: 24px; height: 24px; display: block; }
+.brand-icon { width: 60%; height: auto; max-width: 24px; display: block; }
 
 /* Calculator */
 .calc {
@@ -96,18 +96,19 @@ p { margin: 0; }
   background: var(--bg-tint);
   border: 1px solid var(--line);
   border-radius: 18px;
-  padding: 24px 18px;
+  padding: 20px 16px;
 }
-.calc__controls { display: grid; gap: 26px; align-content: center; }
+.calc__controls { display: grid; gap: 22px; align-content: center; }
 .calc__field-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
-.calc__label { color: var(--ink-soft); font-size: .95rem; }
+.calc__label { color: var(--ink-soft); font-size: .92rem; line-height: 1.35; }
 .calc__value { font-weight: 700; font-size: 1rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .calc__helper { color: var(--muted); font-size: .85rem; margin-top: 10px; }
 
 .calc__range {
   --fill: 50%;
   -webkit-appearance: none; appearance: none;
-  width: 100%; height: 22px; margin: 0; background: transparent; cursor: pointer;
+  width: 100%; height: 30px; margin: 0; background: transparent; cursor: pointer;
+  touch-action: pan-y; -webkit-tap-highlight-color: transparent;
 }
 .calc__range::-webkit-slider-runnable-track {
   height: 6px; border-radius: 99px;
@@ -117,24 +118,24 @@ p { margin: 0; }
 .calc__range::-moz-range-progress { height: 6px; border-radius: 99px; background: var(--teal); }
 .calc__range::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
-  width: 20px; height: 20px; margin-top: -7px; border-radius: 50%;
+  width: 26px; height: 26px; margin-top: -10px; border-radius: 50%;
   background: #fff; border: 3px solid var(--teal); box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
 }
 .calc__range::-moz-range-thumb {
-  width: 14px; height: 14px; border-radius: 50%;
+  width: 20px; height: 20px; border-radius: 50%;
   background: #fff; border: 3px solid var(--teal); box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
 }
 
 .calc__results { display: grid; gap: 16px; }
 .calc__eyebrow {
-  font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
   color: #c9cfd1;
 }
 .calc__eyebrow--leak { color: var(--leak); }
 
 .calc__leak {
   background: #fff; border: 1px solid var(--leak-line); border-radius: var(--radius);
-  padding: 22px 24px;
+  padding: 18px;
 }
 .calc__leak-value {
   font-family: var(--serif); color: var(--leak);
@@ -146,7 +147,7 @@ p { margin: 0; }
 .calc__recover {
   position: relative; overflow: hidden;
   background: var(--dark); color: #e8ecec; border-radius: var(--radius);
-  padding: 24px;
+  padding: 20px 18px;
 }
 .calc__recover::before {
   content: ''; position: absolute; top: -90px; right: -70px; width: 240px; height: 240px;
@@ -161,26 +162,43 @@ p { margin: 0; }
   font-variant-numeric: tabular-nums;
 }
 .calc__per { color: #9aa3a6; font-size: .95rem; }
-.calc__sentence { font-size: .95rem; line-height: 1.6; margin-bottom: 22px; }
+.calc__sentence { font-size: .95rem; line-height: 1.6; margin-bottom: 20px; }
+.calc__recover .btn { width: 100%; padding: 12px 16px; }
 .calc__sentence strong { color: var(--teal-bright); }
+
+/* Sticky summary so phone users see the number change while dragging */
+.calc__bar-anchor { position: sticky; bottom: 12px; z-index: 2; height: 0; margin-top: -22px; }
+.calc__bar {
+  position: absolute; left: -4px; right: -4px; bottom: 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 12px;
+  background: var(--dark); color: #cfd6d8; font-size: .8rem; line-height: 1.25;
+  box-shadow: 0 10px 24px -8px rgba(22, 18, 43, .45);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.calc__bar.is-hidden { opacity: 0; transform: translateY(8px); pointer-events: none; }
+.calc__bar b { display: block; font: 400 1.2rem/1.1 var(--serif); font-variant-numeric: tabular-nums; }
+.calc__bar-leak b { color: #f08c86; }
+.calc__bar-recover { text-align: right; }
+.calc__bar-recover b { color: var(--teal-bright); }
 
 /* Channels */
 .channels {
-  list-style: none; padding: 0; margin: 36px 0 0;
+  list-style: none; padding: 0; margin: 28px 0 0;
   display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
 }
 .channel {
-  flex: 0 1 calc(50% - 6px);
+  flex: 0 1 calc(50% - 6px); justify-content: center;
   display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
   background: var(--bg-tint); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 20px 12px; font-weight: 600; font-size: .95rem; line-height: 1.3;
+  padding: 16px 10px; font-weight: 600; font-size: .9rem; line-height: 1.3;
 }
 .icon { width: 28px; height: 28px; color: var(--teal); flex-shrink: 0; }
 .channels__note { color: var(--ink-soft); text-align: center; max-width: 52ch; margin: 28px auto 0; }
 
 /* Video */
 .video {
-  position: relative; aspect-ratio: 16 / 9; margin: 36px auto 0; max-width: 880px;
+  position: relative; aspect-ratio: 16 / 9; margin: 28px auto 0; max-width: 880px;
   border-radius: 16px; overflow: hidden; background: var(--dark);
   box-shadow: 0 18px 40px -18px rgba(27, 31, 34, .45);
 }
@@ -204,13 +222,13 @@ p { margin: 0; }
 }
 
 /* Booking */
-.booking { margin: 36px auto 0; max-width: 880px; }
+.booking { margin: 28px auto 0; max-width: 880px; }
 .booking iframe {
-  display: block; width: 100%; height: 720px; border: 1px solid var(--line); border-radius: 16px; background: #fff;
+  display: block; width: 100%; height: 680px; border: 1px solid var(--line); border-radius: 16px; background: #fff;
 }
 .booking__placeholder {
   display: grid; place-items: center; gap: 12px; align-content: center;
-  min-height: 360px; padding: 24px; text-align: center;
+  min-height: 280px; padding: 24px; text-align: center;
   border: 2px dashed var(--line); border-radius: 16px; background: var(--bg-tint); color: var(--muted);
 }
 
@@ -219,21 +237,30 @@ p { margin: 0; }
 .footer__inner { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 
 @media (min-width: 640px) {
-  .brand-strip { gap: 14px; }
-  .brand-strip__item { width: auto; height: auto; min-width: 76px; padding: 12px 10px 8px; gap: 6px; }
+  .brand-strip { display: flex; flex-wrap: wrap; gap: 14px; }
+  .brand-strip__item { aspect-ratio: auto; min-width: 76px; padding: 12px 10px 8px; gap: 6px; }
   .brand-strip__item span {
     position: static; width: auto; height: auto; overflow: visible; clip: auto;
     font-size: .75rem; font-weight: 600; color: var(--ink-soft);
   }
-  .brand-icon { width: 28px; height: 28px; }
+  .brand-icon { width: 28px; max-width: none; }
   .channel { flex-basis: calc(25% - 9px); }
   .video__soon { bottom: 16px; font-size: .85rem; }
   .calc { padding: 32px; }
+  .calc__leak { padding: 22px 24px; }
+  .calc__recover { padding: 24px; }
+  .calc__recover .btn { width: auto; padding: 12px 26px; }
+  .header__inner { height: 64px; }
+  .logo { height: 28px; }
+  .btn--sm { min-height: 40px; padding: 10px 18px; font-size: .95rem; }
+  .hero { padding: 56px 0 32px; }
+  .brand-strip { margin-bottom: 32px; }
 }
 
 @media (min-width: 900px) {
   .section { padding: 88px 0; }
   .section--calc { padding-top: 8px; }
+  .calc__bar-anchor { display: none; }
   .hero { padding: 88px 0 40px; }
   .calc { grid-template-columns: 1fr 1fr; gap: 44px; padding: 40px; }
   .calc__leak { padding: 26px 28px; }

@@ -64,6 +64,18 @@ export function mountCalculator(root, { industry } = {}) {
     outputs[name] = { input, output, slider };
   });
 
+  // Compact summary pinned to the bottom of the screen on phones (hidden on desktop).
+  const bar = el('div', 'calc__bar');
+  bar.setAttribute('aria-hidden', 'true');
+  const barLeak = el('b'); const barRecover = el('b');
+  const barLeakWrap = el('span', 'calc__bar-leak', copy.barLeak);
+  const barRecoverWrap = el('span', 'calc__bar-recover', copy.barRecover);
+  barLeakWrap.prepend(barLeak); barRecoverWrap.prepend(barRecover);
+  bar.append(barLeakWrap, barRecoverWrap);
+  const barAnchor = el('div', 'calc__bar-anchor');
+  barAnchor.append(bar);
+  controls.append(barAnchor);
+
   const results = el('div', 'calc__results');
   results.setAttribute('aria-live', 'polite');
 
@@ -84,6 +96,13 @@ export function mountCalculator(root, { industry } = {}) {
   wrap.append(controls, results);
   root.replaceChildren(wrap);
 
+  // Hide the summary bar once the full result cards are on screen.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      bar.classList.toggle('is-hidden', entry.isIntersecting);
+    }, { rootMargin: '0px 0px -35% 0px' }).observe(results);
+  }
+
   function renderSentence(result) {
     const unit = result.extraJobs === 1 ? copy.unitSingular : copy.unitPlural;
     const [before, after = ''] = copy.result.split('{yearly}');
@@ -103,6 +122,8 @@ export function mountCalculator(root, { industry } = {}) {
     const result = calculate(fromSliderValues(values));
     leakValue.textContent = formatCurrency(result.leak, config);
     recoverValue.textContent = formatCurrency(result.recovered, config);
+    barLeak.textContent = leakValue.textContent;
+    barRecover.textContent = recoverValue.textContent;
     renderSentence(result);
   }
 
