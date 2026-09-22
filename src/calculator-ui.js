@@ -88,9 +88,7 @@ export function mountCalculator(root, { industry } = {}) {
   const recoverRow = el('p', 'calc__recover-row');
   recoverRow.append(recoverValue, el('span', 'calc__per', copy.perMonth));
   const sentence = el('p', 'calc__sentence');
-  const cta = el('a', 'btn btn--teal', copy.cta);
-  cta.href = copy.ctaHref;
-  recoverCard.append(el('p', 'calc__eyebrow', copy.recoverLabel), recoverRow, sentence, cta);
+  recoverCard.append(el('p', 'calc__eyebrow', copy.recoverLabel), recoverRow, sentence);
 
   results.append(leakCard, recoverCard);
   wrap.append(controls, results);

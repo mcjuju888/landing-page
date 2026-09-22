@@ -109,8 +109,6 @@ export const CALCULATOR_CONFIGS = {
       unitPlural: 'jobs',
       barLeak: 'Leaking /mo',
       barRecover: 'Belvoro puts back',
-      cta: 'Recover It: Book a Demo',
-      ctaHref: '#book',
     },
   },
   dealership: {
@@ -144,8 +142,6 @@ export const CALCULATOR_CONFIGS = {
       unitPlural: 'customers',
       barLeak: 'Leaking /mo',
       barRecover: 'Belvoro puts back',
-      cta: 'Recover It: Get Started',
-      ctaHref: '#book',
     },
   },
 };
