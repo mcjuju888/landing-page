@@ -1,6 +1,7 @@
 // All page copy and configuration lives in this file.
 // Edit text here; components read from it and never hard-code copy.
 // Copy rule: no em dashes anywhere (a test enforces this).
+// In headings, wrap a word in *asterisks* to show it in teal italics.
 
 // Paste a YouTube, Vimeo or direct .mp4 link. Empty shows the placeholder.
 export const VIDEO_URL = '';
@@ -12,7 +13,7 @@ export const CONTACT_EMAIL = 'hello@belvoro.ai';
 
 export const BRAND = {
   name: 'Belvoro',
-  logoSrc: 'assets/logo.svg',
+  logoSrc: 'assets/logo.png',
   logoAlt: 'Belvoro',
   copyright: '© Belvoro AI',
 };
@@ -28,12 +29,22 @@ export const HEADER = {
 };
 
 export const HERO = {
-  heading: 'How much is silence costing your HVAC business?',
+  // Channel logos shown above the headline, in this order.
+  channels: [
+    { icon: 'phone', label: 'Phone' },
+    { icon: 'sms', label: 'SMS' },
+    { icon: 'gmail', label: 'Gmail' },
+    { icon: 'instagram', label: 'Instagram' },
+    { icon: 'facebook', label: 'Facebook' },
+    { icon: 'whatsapp', label: 'WhatsApp' },
+    { icon: 'website', label: 'Website' },
+  ],
+  heading: 'How much is *silence* costing your HVAC business?',
   sub: 'Every unanswered call is a job going to the next contractor on Google. See your number below.',
 };
 
 export const CHANNELS = {
-  heading: 'Every way a homeowner reaches you. Answered in seconds, 24/7.',
+  heading: 'Every way a homeowner reaches you. Answered in *seconds*, 24/7.',
   items: [
     { icon: 'phone', label: 'Phone calls' },
     { icon: 'callback', label: 'Missed call text back' },
@@ -48,7 +59,7 @@ export const CHANNELS = {
 };
 
 export const VIDEO = {
-  heading: 'See Belvoro answer a real HVAC call',
+  heading: 'See How Belvoro *Helps*',
   posterSrc: 'assets/demo-poster.svg',
   playLabel: 'Play the demo video',
   comingSoon: 'Demo video coming soon',
@@ -56,7 +67,7 @@ export const VIDEO = {
 };
 
 export const BOOKING = {
-  heading: 'Book a 15 minute demo',
+  heading: 'Book a 15 minute *demo*',
   sub: "We'll run your real numbers and show you Belvoro handling your calls.",
   placeholder: 'Your booking calendar will appear here.',
   iframeTitle: 'Book a demo with Belvoro',

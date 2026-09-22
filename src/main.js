@@ -4,10 +4,12 @@ import {
 } from './content.js';
 import { mountCalculator } from './calculator-ui.js';
 import { videoEmbed, bookingEmbedSrc } from './media.js';
-import { icon } from './icons.js';
+import { icon, brandIcon } from './icons.js';
 
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+// Escapes text, then turns *word* into an accented <em>.
+const rich = (s) => esc(s).replace(/\*(.+?)\*/g, '<em>$1</em>');
 const bookHref = '#book';
 
 document.title = META.title;
@@ -15,13 +17,17 @@ document.querySelector('meta[name="description"]')?.setAttribute('content', META
 
 $('#header').innerHTML = `
   <div class="container header__inner">
-    <img class="logo" src="${esc(BRAND.logoSrc)}" alt="${esc(BRAND.logoAlt)}" width="132" height="32">
+    <img class="logo" src="${esc(BRAND.logoSrc)}" alt="${esc(BRAND.logoAlt)}" width="160" height="32">
     <a class="btn btn--teal btn--sm" href="${bookHref}">${esc(HEADER.cta)}</a>
   </div>`;
 
 $('#hero').innerHTML = `
   <div class="container hero__inner">
-    <h1>${esc(HERO.heading)}</h1>
+    <ul class="brand-strip">
+      ${HERO.channels.map((c) => `
+        <li class="brand-strip__item" title="${esc(c.label)}">${brandIcon(c.icon)}<span>${esc(c.label)}</span></li>`).join('')}
+    </ul>
+    <h1>${rich(HERO.heading)}</h1>
     <p class="lede">${esc(HERO.sub)}</p>
   </div>`;
 
@@ -29,7 +35,7 @@ mountCalculator($('#calculator-root'), { industry: 'hvac' });
 
 $('#channels').innerHTML = `
   <div class="container">
-    <h2>${esc(CHANNELS.heading)}</h2>
+    <h2>${rich(CHANNELS.heading)}</h2>
     <ul class="channels">
       ${CHANNELS.items.map((c) => `
         <li class="channel">${icon(c.icon)}<span>${esc(c.label)}</span></li>`).join('')}
@@ -39,7 +45,7 @@ $('#channels').innerHTML = `
 
 $('#demo').innerHTML = `
   <div class="container">
-    <h2>${esc(VIDEO.heading)}</h2>
+    <h2>${rich(VIDEO.heading)}</h2>
     <div class="video">
       <button class="video__poster" type="button" aria-label="${esc(VIDEO.playLabel)}"
         style="background-image:url('${esc(VIDEO.posterSrc)}')">
@@ -72,7 +78,7 @@ if (!embed) {
 const bookingSrc = bookingEmbedSrc(BOOKING_URL);
 $('#book').innerHTML = `
   <div class="container">
-    <h2>${esc(BOOKING.heading)}</h2>
+    <h2>${rich(BOOKING.heading)}</h2>
     <p class="lede">${esc(BOOKING.sub)}</p>
     <div class="booking">
       ${bookingSrc
