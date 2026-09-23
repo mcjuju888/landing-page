@@ -42,6 +42,8 @@ export const CHANNELS = {
     { icon: 'website', label: 'Website' },
   ],
   footnote: 'Emergency calls get flagged and routed to your on-call tech.',
+  // Price shown to the right of the heading.
+  price: { label: 'Starting at', amount: '$250', period: 'per month' },
 };
 
 export const VIDEO = {

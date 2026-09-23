@@ -29,12 +29,19 @@ mountCalculator($('#calculator-root'), { industry: 'hvac' });
 
 $('#channels').innerHTML = `
   <div class="container channels-block">
-    <h2>${rich(CHANNELS.heading)}</h2>
-    <ul class="channels">
-      ${CHANNELS.items.map((c) => `
-        <li class="channel" title="${esc(c.label)}">${brandIcon(c.icon)}<span class="sr-only">${esc(c.label)}</span></li>`).join('')}
-    </ul>
-    <p class="channels__note">${esc(CHANNELS.footnote)}</p>
+    <div>
+      <h2>${rich(CHANNELS.heading)}</h2>
+      <ul class="channels">
+        ${CHANNELS.items.map((c) => `
+          <li class="channel" title="${esc(c.label)}">${brandIcon(c.icon)}<span class="sr-only">${esc(c.label)}</span></li>`).join('')}
+      </ul>
+      <p class="channels__note">${esc(CHANNELS.footnote)}</p>
+    </div>
+    <p class="price">
+      <span class="price__label">${esc(CHANNELS.price.label)}</span>
+      <span class="price__amount">${esc(CHANNELS.price.amount)}</span>
+      <span class="price__period">${esc(CHANNELS.price.period)}</span>
+    </p>
   </div>`;
 
 $('#demo').innerHTML = `

@@ -159,7 +159,15 @@ p { margin: 0; }
 .calc__bar-recover b { color: var(--teal-bright); }
 
 /* Channels */
+.channels-block { display: grid; gap: 28px; align-items: center; }
 .channels-block h2 { text-align: left; margin: 0; max-width: 20ch; }
+.price {
+  display: grid; justify-items: start; gap: 2px;
+  padding: 22px 24px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-tint);
+}
+.price__label { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.price__amount { font: 400 clamp(2.75rem, 9vw, 3.75rem)/1.05 var(--serif); color: var(--teal); letter-spacing: -0.02em; }
+.price__period { color: var(--ink-soft); font-size: 1rem; }
 .channels {
   list-style: none; padding: 0; margin: 24px 0 0;
   display: flex; flex-wrap: wrap; align-items: center; gap: 18px;
@@ -236,6 +244,8 @@ p { margin: 0; }
   .calc__recover { padding: 30px 28px; }
   .booking iframe { height: 760px; }
   .demo { grid-template-columns: 1fr 1.35fr; gap: 56px; }
+  .channels-block { grid-template-columns: 1fr auto; gap: 56px; }
+  .price { justify-items: center; text-align: center; padding: 32px 44px; }
   .channel { width: 36px; height: 36px; }
   .channels { gap: 24px; }
 }
