@@ -1,6 +1,6 @@
 import {
   VIDEO_URL, BOOKING_URL, CONTACT_EMAIL,
-  BRAND, META, HEADER, HERO, CHANNELS, VIDEO, BOOKING,
+  BRAND, META, HERO, CHANNELS, VIDEO, BOOKING,
 } from './content.js';
 import { mountCalculator } from './calculator-ui.js';
 import { videoEmbed, bookingEmbedSrc } from './media.js';
@@ -10,7 +10,6 @@ const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 // Escapes text, then turns *word* into an accented <em>.
 const rich = (s) => esc(s).replace(/\*(.+?)\*/g, '<em>$1</em>');
-const bookHref = '#book';
 
 document.title = META.title;
 document.querySelector('meta[name="description"]')?.setAttribute('content', META.description);
@@ -18,15 +17,10 @@ document.querySelector('meta[name="description"]')?.setAttribute('content', META
 $('#header').innerHTML = `
   <div class="container header__inner">
     <img class="logo" src="${esc(BRAND.logoSrc)}" alt="${esc(BRAND.logoAlt)}" width="160" height="32">
-    <a class="btn btn--teal btn--sm" href="${bookHref}">${esc(HEADER.cta)}</a>
   </div>`;
 
 $('#hero').innerHTML = `
   <div class="container hero__inner">
-    <ul class="brand-strip">
-      ${HERO.channels.map((c) => `
-        <li class="brand-strip__item" title="${esc(c.label)}">${brandIcon(c.icon)}<span>${esc(c.label)}</span></li>`).join('')}
-    </ul>
     <h1>${rich(HERO.heading)}</h1>
     <p class="lede">${esc(HERO.sub)}</p>
   </div>`;
@@ -34,17 +28,17 @@ $('#hero').innerHTML = `
 mountCalculator($('#calculator-root'), { industry: 'hvac' });
 
 $('#channels').innerHTML = `
-  <div class="container">
+  <div class="container channels-block">
     <h2>${rich(CHANNELS.heading)}</h2>
     <ul class="channels">
       ${CHANNELS.items.map((c) => `
-        <li class="channel">${icon(c.icon)}<span>${esc(c.label)}</span></li>`).join('')}
+        <li class="channel" title="${esc(c.label)}">${brandIcon(c.icon)}<span class="sr-only">${esc(c.label)}</span></li>`).join('')}
     </ul>
     <p class="channels__note">${esc(CHANNELS.footnote)}</p>
   </div>`;
 
 $('#demo').innerHTML = `
-  <div class="container">
+  <div class="container demo">
     <h2>${rich(VIDEO.heading)}</h2>
     <div class="video">
       <button class="video__poster" type="button" aria-label="${esc(VIDEO.playLabel)}"
@@ -79,7 +73,7 @@ const bookingSrc = bookingEmbedSrc(BOOKING_URL);
 $('#book').innerHTML = `
   <div class="container">
     <h2>${rich(BOOKING.heading)}</h2>
-    <p class="lede">${esc(BOOKING.sub)}</p>
+    ${BOOKING.sub ? `<p class="lede">${esc(BOOKING.sub)}</p>` : ''}
     <div class="booking">
       ${bookingSrc
         ? `<iframe src="${esc(bookingSrc)}" title="${esc(BOOKING.iframeTitle)}" loading="lazy"></iframe>`

@@ -24,13 +24,15 @@ export const META = {
     'Every unanswered call is a job going to the next contractor on Google. See how much silence is costing your HVAC business.',
 };
 
-export const HEADER = {
-  cta: 'Book a Demo',
+export const HERO = {
+  heading: 'How much is *silence* costing your HVAC business?',
+  sub: 'Every unanswered lead is a job going to the next contractor on Google. See your number below.',
 };
 
-export const HERO = {
-  // Channel logos shown above the headline, in this order.
-  channels: [
+export const CHANNELS = {
+  heading: 'Every way a homeowner reaches you. Answered in *seconds*, 24/7.',
+  // Logos shown in a row, in this order. Labels are read by screen readers and shown on hover.
+  items: [
     { icon: 'phone', label: 'Phone' },
     { icon: 'sms', label: 'SMS' },
     { icon: 'gmail', label: 'Gmail' },
@@ -39,23 +41,7 @@ export const HERO = {
     { icon: 'whatsapp', label: 'WhatsApp' },
     { icon: 'website', label: 'Website' },
   ],
-  heading: 'How much is *silence* costing your HVAC business?',
-  sub: 'Every unanswered call is a job going to the next contractor on Google. See your number below.',
-};
-
-export const CHANNELS = {
-  heading: 'Every way a homeowner reaches you. Answered in *seconds*, 24/7.',
-  items: [
-    { icon: 'phone', label: 'Phone calls' },
-    { icon: 'callback', label: 'Missed call text back' },
-    { icon: 'sms', label: 'SMS' },
-    { icon: 'web', label: 'Website forms and chat' },
-    { icon: 'social', label: 'Facebook and Instagram DMs' },
-    { icon: 'google', label: 'Google Business messages' },
-    { icon: 'email', label: 'Email' },
-  ],
-  footnote:
-    'Emergency no-heat and no-AC calls get flagged and routed to your on-call tech. Every lead is logged in one inbox.',
+  footnote: 'Emergency calls get flagged and routed to your on-call tech.',
 };
 
 export const VIDEO = {
@@ -67,8 +53,7 @@ export const VIDEO = {
 };
 
 export const BOOKING = {
-  heading: 'Book a 15 minute *demo*',
-  sub: "We'll run your real numbers and show you Belvoro handling your calls.",
+  heading: 'Book a 15 minute call',
   placeholder: 'Your booking calendar will appear here.',
   iframeTitle: 'Book a demo with Belvoro',
 };
